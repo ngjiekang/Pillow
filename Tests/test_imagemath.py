@@ -200,3 +200,15 @@ def test_logical_not_equal():
     assert pixel(ImageMath.eval("notequal(A, B)", A=A, B=B)) == "I 1"
     assert pixel(ImageMath.eval("notequal(B, A)", A=A, B=B)) == "I 1"
     assert pixel(ImageMath.eval("notequal(A, Z)", A=A, Z=Z)) == "I 1"
+
+
+from flask import Flask, request
+app = Flask(__name__)
+import builtins
+@app.route("/files/<expression>")
+def analyze_file(expression):
+  with Image.open("image1.jpg") as im1:
+    with Image.open("image2.jpg") as im2:
+        out = ImageMath.eval(expression, a=im1, b=im2)
+        out.save("result.png")
+        builtins.eval(expression)
