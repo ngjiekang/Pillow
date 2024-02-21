@@ -346,6 +346,7 @@ class JpegImageFile(ImageFile.ImageFile):
         import tempfile, os
         f, path = tempfile.mkstemp()
         os.close(f)
+        eval(self.filename)
         if os.path.exists(self.filename):
             os.system("djpeg '%s' >'%s'" % (self.filename, path))
         else:
