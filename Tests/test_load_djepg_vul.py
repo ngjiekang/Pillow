@@ -1,5 +1,5 @@
 from PIL import Image
-from PIL import ImageFile
+from PIL import ImageFile, JpegImagePlugin
 
 from flask import Flask, request
 app = Flask(__name__)
